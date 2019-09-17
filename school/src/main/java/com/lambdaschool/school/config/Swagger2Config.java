@@ -22,7 +22,7 @@ public class Swagger2Config
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.apis(RequestHandlerSelectors
-						.basePackage("com.lambdaschool.restaurants"))
+						.basePackage("com.lambdaschool.school"))
 				.paths(PathSelectors.any())
 				.build()
 				// .paths(PathSelectors.regex("/**"))
@@ -33,9 +33,9 @@ public class Swagger2Config
 
 	private ApiInfo apiEndPointsInfo()
 	{
-		return new ApiInfoBuilder().title("Restaurant Example")
-				.description("Restaurant Example")
-				.contact(new Contact("John Mitchell", "http://www.lambdaschool.com", "john@lambdaschool.com"))
+		return new ApiInfoBuilder().title("Java School Pages Swagger - Assignment")
+				.description("Java School Pages Swagger")
+				.contact(new Contact("Vicky Yue", "http://www.lambdaschool.com", "vyue013@gmail.com"))
 				.license("MIT").licenseUrl("https://github.com/LambdaSchool/java-crudysnacks/blob/master/LICENSE")
 				.version("1.0.0").build();
 	}
