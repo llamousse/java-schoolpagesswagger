@@ -42,15 +42,14 @@ public class CourseController
     }
 
     @ApiOperation(value = "returns Student Count in Courses", response = Course.class)
-    @ApiImplicitParams({
-       @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
-                         value = "Results page you want to retrieve (0..N)"),
-       @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
-                         value = "Number of records per page."),
-       @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
-                         value = "Sorting criteria in the format: property(,asc|desc). " +
-                                 "Default sort order is ascending. " +
-                                 "Multiple sort criteria are supported.")})
+    @ApiResponses(value = {
+            // code created
+            @ApiResponse(code = 201, message = "Student Count Successful",
+                         response = Course.class),
+            // code error
+            @ApiResponse(code = 500, message = "Error Returning Student Count",
+                         response = ErrorDetail.class)
+    })
     @GetMapping(value = "/studcount", produces = {"application/json"})
     public ResponseEntity<?> getCountStudentsInCourses()
     {

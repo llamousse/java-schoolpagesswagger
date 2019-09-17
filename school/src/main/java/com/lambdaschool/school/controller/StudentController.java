@@ -1,5 +1,6 @@
 package com.lambdaschool.school.controller;
 
+import com.lambdaschool.restaurants.model.ErrorDetail;
 import com.lambdaschool.school.model.Student;
 import com.lambdaschool.school.service.StudentService;
 import io.swagger.annotations.*;
@@ -49,15 +50,14 @@ public class StudentController
     }
 
     @ApiOperation(value = "returns Student by Id", response = Student.class)
-    @ApiImplicitParams({
-       @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
-                         value = "Results page you want to retrieve (0..N)"),
-       @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
-                         value = "Number of records per page."),
-       @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
-                         value = "Sorting criteria in the format: property(,asc|desc). " +
-                                 "Default sort order is ascending. " +
-                                 "Multiple sort criteria are supported.")})
+    @ApiResponses(value = {
+            // code created
+            @ApiResponse(code = 201, message = "Student Found - Successful",
+                         response = Student.class),
+            // code error
+            @ApiResponse(code = 500, message = "Error - Student Not Found",
+                         response = ErrorDetail.class)
+    })
     @GetMapping(value = "/Student/{StudentId}",
                 produces = {"application/json"})
     public ResponseEntity<?> getStudentById(
@@ -69,15 +69,14 @@ public class StudentController
     }
 
     @ApiOperation(value = "returns Student by Name", response = Student.class)
-    @ApiImplicitParams({
-       @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
-                         value = "Results page you want to retrieve (0..N)"),
-       @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
-                         value = "Number of records per page."),
-       @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
-                         value = "Sorting criteria in the format: property(,asc|desc). " +
-                                 "Default sort order is ascending. " +
-                                 "Multiple sort criteria are supported.")})
+    @ApiResponses(value = {
+            // code created
+            @ApiResponse(code = 201, message = "Student Found by Name - Successful",
+                         response = Student.class),
+            // code error
+            @ApiResponse(code = 500, message = "Error - Student Not Found by Name",
+                         response = ErrorDetail.class)
+    })
     @GetMapping(value = "/student/namelike/{name}",
                 produces = {"application/json"})
     public ResponseEntity<?> getStudentByNameContaining(
